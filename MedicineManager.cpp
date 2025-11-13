@@ -9,7 +9,7 @@ MedicineManager::~MedicineManager() {
     delete this->khoThuoc; // Tự động gọi Destructor của HashTable
 }
 
-MedicineInfo* MedicineManager::timThuocTheoMa(std::string ma) {
+MedicineInfo* MedicineManager::timThuocTheoMa(std::string ma) const {
     // [ỔN ĐỊNH] Luôn kiểm tra NULL
     MedicineInfo* result = this->khoThuoc->find(ma);
     if (result == NULL) {
