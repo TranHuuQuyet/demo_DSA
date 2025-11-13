@@ -45,5 +45,5 @@ struct Prescription {
     ~Prescription() {
         delete chiTietThuoc; // Nếu dùng con trỏ
     }
-    // ...
+    // ..........hgfcghfch
 };
