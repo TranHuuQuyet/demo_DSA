@@ -6,8 +6,28 @@ HashTable::HashTable(int size){
 HashTable::~HashTable(){
     
 }
+void HashTable::insert(MedicineInfo medicine){
+    int index = hashFunction(medicine.maThuoc);
+
+    MedicineInfo* current = table[index];
+    
+    while(current != nullptr){ // cap nhap thuoc vao danh sach
+        if(current->maThuoc == medicine.maThuoc){
+            current->tenThuoc = medicine.tenThuoc;
+            current->donViTinh = medicice.donViTinh;
+            current->donGia = medicine.donGia;
+            return;
+        }
+           current = current->next;
+    }
+    MedicineInfo* newMedi = new MedicineInfo(medicine); // them thuoc neu chua co 
+    newMedi->next = table[index];
+    table[index] = newMedi;
+
+}
 int HashTable::hashFunction(std::string key) {
     int sum = 0;
+
     for(char c : key){ // Duyệt từng phần tử 
         sum += static_cast<int>(c); // Chuyển sang dãy số ASCII và cộng vào sum 
     }
