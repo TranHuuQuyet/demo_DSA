@@ -1,6 +1,11 @@
 // HashTable.cpp
 #include "HashTable.h"
-count int Hash_table = 100;
+HashTable::HashTable(int size){
+     tableSize = size;
+}   
+HashTable::~HashTable(){
+    
+}
 int HashTable::hashFunction(std::string key) {
     int sum = 0;
     for(char c : key){ // Duyệt từng phần tử 
