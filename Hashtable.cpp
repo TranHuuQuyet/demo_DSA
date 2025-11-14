@@ -1,10 +1,15 @@
 // HashTable.cpp
 #include "HashTable.h"
-
+count int Hash_table = 100;
 int HashTable::hashFunction(std::string key) {
+    int sum = 0;
+    for(char c : key){ // Duyệt từng phần tử 
+        sum += static_cast<int>(c); // Chuyển sang dãy số ASCII và cộng vào sum 
+    }
+    retun sum % Hash_table; // trả về phần dư của phép chia tổng cho số phần tử tối đa trong mãng
+    
     // ... Cài đặt hàm băm (ví dụ: djb2, sdbm)
     // Trả về một chỉ số (index) trong mảng
-    return index;
 }
 
 MedicineInfo* HashTable::find(std::string maThuoc) {
