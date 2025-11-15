@@ -18,8 +18,8 @@ struct PrescriptionItemNode {
     PrescriptionItemNode* next;
 };
 
-// Khai báo trước
-struct PrescriptionList; 
+// Khai báo trước (forward declaration)
+class PrescriptionList; 
 
 // 3. Dữ liệu cho Đơn thuốc (Quản lý các DSLK)
 struct Prescription {
@@ -29,8 +29,7 @@ struct Prescription {
     
     PrescriptionList* chiTietThuoc; // Dùng con trỏ để quản lý
 
-    // === SỬA ĐỔI QUAN TRỌNG ===
-    // Chỉ KHAIBÁO, không ĐỊNH NGHĨA (implement)
+    // Chỉ KHAIBÁO
     Prescription();
     ~Prescription();
 };

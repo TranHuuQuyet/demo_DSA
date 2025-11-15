@@ -1,29 +1,24 @@
 // LinkedList.h
 #pragma once
-#include "structs.h" // Cần file này để biết PrescriptionItemNode là gì
 #include <string>
-using namespace std;
-struct PrescriptionList {
-    
-    // 1. Dữ liệu thành viên (Member Data)
-    PrescriptionItemNode* head;
 
-    // 2. Phương thức thành viên (Member Methods)
-    
-    // Constructor: Tự động chạy khi 1 đối tượng PrescriptionList được tạo
+// --- Forward Declarations ---
+struct PrescriptionItemNode; 
+struct MedicineInfo; 
+class MedicineManager; 
+// ---
+
+class PrescriptionList {
+private:
+    PrescriptionItemNode* head; // [PRIVATE]
+    void freeList(); // [PRIVATE]
+
+public:
     PrescriptionList();
-
-    // Destructor: Tự động chạy khi đối tượng bị hủy
-    // [RẤT QUAN TRỌNG] để chống rò rỉ bộ nhớ
     ~PrescriptionList();
 
-    // Thêm một thuốc vào ĐẦU danh sách
-    void insertAtHead(string maThuoc, int soLuong, string huongDan);
-
-    // Hiển thị tất cả thuốc (cần MedicineManager để tra cứu tên)
-    // Lưu ý: Chúng ta sẽ truyền MedicineManager vào khi gọi
-    void display(const MedicineManager& medManager); 
-
-    // Hàm nội bộ để dọn dẹp bộ nhớ
-    void freeList();
+    void insertAtHead(std::string maThuoc, int soLuong, std::string huongDan);
+    
+    // Đã thêm const, không cần const_cast
+    void display(const MedicineManager& medManager) const;
 };

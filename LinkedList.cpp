@@ -1,68 +1,63 @@
 // LinkedList.cpp
 #include "LinkedList.h"
-
+#include "structs.h"         // Cần để tạo new PrescriptionItemNode
+#include "MedicineManager.h" // Cần để dùng hàm timThuocTheoMa
 #include <iostream>
 
-#include "MedicineManager.h"  // Cần để tra cứu tên thuốc khi hiển thị
-#include "structs.h"
-
-// Constructor: Khởi tạo head = NULL
-PrescriptionList::PrescriptionList() { this->head = NULL; }
-
-// Destructor: Tự động gọi freeList
-PrescriptionList::~PrescriptionList() { this->freeList(); }
-
-//CHỨC NĂNG Thêm vào đầu
-void PrescriptionList::insertAtHead(string maThuoc, int soLuong,
-                                    string huongDan) {
-  // 1. Tạo node mới
-  PrescriptionItemNode* newNode =
-      new PrescriptionItemNode();  // tạo một bộ nhớ trên heap kiểu prescription
-  newNode->maThuoc = maThuoc;
-  newNode->soLuong = soLuong;
-  newNode->huongDanSuDung = huongDan;
-
-  // 2. Nối vào đầu
-  newNode->next = this->head;
-
-  // 3. Cập nhật head
-  this->head = newNode;
+// Constructor
+PrescriptionList::PrescriptionList() {
+    this->head = NULL;
 }
 
-// CHỨC NĂNG Dọn dẹp bộ nhớ
+// Destructor
+PrescriptionList::~PrescriptionList() {
+    this->freeList();
+}
+
+// Hàm private: Dọn dẹp bộ nhớ
 void PrescriptionList::freeList() {
-  PrescriptionItemNode* current = this->head;
-  while (current != NULL) {
-    PrescriptionItemNode* temp = current;  // Giữ node tạm
-    current = current->next;               // Di chuyển
-    delete temp;                           // Xóa node
-  }
-  this->head = NULL;  // Đảm bảo an toàn
+    PrescriptionItemNode* current = this->head;
+    while (current != NULL) {
+        PrescriptionItemNode* temp = current;
+        current = current->next;
+        delete temp;
+    }
+    this->head = NULL;
 }
 
-// CHỨC NĂNG Hiển thị (ví dụ)
-void PrescriptionList::display(const MedicineManager& medManager) {
-  PrescriptionItemNode* current = this->head;
-  if (current == NULL) {
-    cout << "  (Don thuoc rong !)" << endl;
-    return;
-  }
+// Hàm public: Thêm vào đầu
+void PrescriptionList::insertAtHead(std::string maThuoc, int soLuong, std::string huongDan) {
+    PrescriptionItemNode* newNode = new PrescriptionItemNode();
+    newNode->maThuoc = maThuoc;
+    newNode->soLuong = soLuong;
+    newNode->huongDanSuDung = huongDan;
 
-  int i = 1;
-  while (current != NULL) {
-    // Tra cứu tên thuốc từ Bảng Băm
-    // Lưu ý: hàm find() phải là 'const' hoặc phải ép kiểu
-    MedicineInfo* info = medManager.timThuocTheoMa(current->maThuoc);
+    newNode->next = this->head;
+    this->head = newNode;
+}
 
-    cout << "  " << i++ << ". ";
-    if (info != NULL) {
-      cout << info->tenThuoc;
-    } else {
-      cout << current->maThuoc << " (Khong ro ten)";
+// Hàm public: Hiển thị (đã có const)
+void PrescriptionList::display(const MedicineManager& medManager) const {
+    PrescriptionItemNode* current = this->head;
+    if (current == NULL) {
+        std::cout << "  (Don thuoc rong !)" << std::endl;
+        return;
     }
-    cout << " - SL: " << current->soLuong <<endl;
-    cout << "     HD: " << current->huongDanSuDung <<endl;
 
-    current = current->next;
-  }
+    int i = 1;
+    while (current != NULL) {
+        // Tra cứu tên thuốc (KHÔNG CẦN const_cast nữa)
+        MedicineInfo* info = medManager.timThuocTheoMa(current->maThuoc);
+        
+        std::cout << "  " << i++ << ". ";
+        if (info != NULL) {
+            std::cout << info->tenThuoc;
+        } else {
+            std::cout << current->maThuoc << " (Khong ro ten)";
+        }
+        std::cout << " - SL: " << current->soLuong << std::endl;
+        std::cout << "     HD: " << current->huongDanSuDung << std::endl;
+        
+        current = current->next;
+    }
 }
