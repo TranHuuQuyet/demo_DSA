@@ -1,6 +1,6 @@
 // MedicineManager.h
 #pragma once
-#include "HashTable.h"
+#include "Hashtable.h"
 #include "structs.h"
 #include <string>
 

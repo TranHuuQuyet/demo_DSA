@@ -1,5 +1,5 @@
 // HashTable.cpp
-#include "HashTable.h"
+#include "Hashtable.h"
 #include <iostream> 
 
 // 1. Constructor
