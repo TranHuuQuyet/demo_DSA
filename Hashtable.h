@@ -24,4 +24,5 @@ public:
     void insert(MedicineInfo medicine); // khai báo hàm thêm thuốc
     MedicineInfo* find(std::string maThuoc) const; // khai báo hàm tìm thuốc
     void remove(std::string maThuoc); // khai báo hàm xóa thuốc
+    void display() const;
 };

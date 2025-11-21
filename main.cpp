@@ -51,6 +51,8 @@ int main() {
             case 5:
                 quanLyDon.hienThiTatCaDonThuoc();
                 break;
+            case 6:
+            quanLyKho.display();
             case 0:
                 std::cout << "Tam biet!" << std::endl;
                 break;
@@ -81,6 +83,7 @@ void displayMenu() {
     std::cout << "3. Tao don thuoc moi" << std::endl;
     std::cout << "4. Tim va hien thi don thuoc" << std::endl;
     std::cout << "5. Hien thi tat ca don thuoc" << std::endl;
+    std::cout << "6. Hien thi tat ca thuoc trong kho" << std::endl;
     std::cout << "0. Thoat" << std::endl;
     std::cout << "========================================" << std::endl;
 }

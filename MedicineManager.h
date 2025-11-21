@@ -18,4 +18,5 @@ public:
 
     // Đã có 'const'
     MedicineInfo* timThuocTheoMa(std::string ma) const;
+    void display() const;
 };

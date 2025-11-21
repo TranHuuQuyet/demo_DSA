@@ -50,3 +50,6 @@ MedicineInfo* MedicineManager::timThuocTheoMa(std::string ma) const {
     // Không nên in lỗi ở đây, để cho nơi gọi xử lý
     return result; 
 }
+void MedicineManager::display() const {
+     this->khoThuoc->display(); 
+    }
