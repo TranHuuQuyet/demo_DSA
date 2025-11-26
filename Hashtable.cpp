@@ -94,11 +94,11 @@
         std::cout << "\n========================================" << std::endl;
         std::cout << "             DANH SACH KHO THUOC          " << std::endl;
         std::cout << "\n========================================" << std::endl;
-        std::cout << "Ma thuoc" << std::endl;
-        std::cout << "Ten thuoc" << std::endl;
-        std::cout << "Don vi tinh" << std::endl;
-        std::cout << "Gia Tien" << std::endl;
-        std::cout << "========================================" << std::endl;
+        std::cout << "Ma thuoc |";
+        std::cout << "Ten thuoc |";
+        std::cout << "Don vi tinh |";
+        std::cout << "Gia Tien ";
+        std::cout << "\n========================================" << std::endl;
         for(int i = 0; i < tableSize; i++){
             HashNode* curr = table[i];
             while(curr != nullptr){
